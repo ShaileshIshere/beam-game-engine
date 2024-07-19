@@ -1,5 +1,0 @@
-node_modules
-# contains all the games listed on the server
-API
-# contains a special secret to generate user authentication
-secret.js
