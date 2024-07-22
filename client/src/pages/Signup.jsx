@@ -10,31 +10,34 @@ import Background from "../images/redBackground.jpg";
 export const Signup = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [Email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const handleSignup = async () => {
-        try{
+        if (!email || !username || !password) {
+            setErrorMessage("Please fill in all the details");
+            return;
+        }
+
+        try {
             const response = await axios.post("http://localhost:3000/api/user/signup", {
-                Email,
+                email,
                 username,
                 password
-            })
+            });
             localStorage.setItem("token", response.data.token);
             navigate("/dashboard");
         } catch (error) {
             if (error.response) {
-                // Server responded with a status other than 200 range
                 console.error("Error response", error.response.data);
             } else if (error.request) {
-                // Request was made but no response received
                 console.error("Error request", error.request);
             } else {
-                // Something else happened while setting up the request
                 console.error("Error message", error.message);
             }
         }
-    }
+    };
 
     return (
         <div className="relative w-screen h-screen overflow-hidden">
@@ -42,19 +45,20 @@ export const Signup = () => {
             <div className="absolute inset-0 h-full w-full flex justify-center items-center bg-black bg-opacity-30">
                 <div className="absolute bg-zinc-900 w-1/3 h-2/3 px-7">
                     <Header label={"sign up"} />
-                    <InputBox onChange={(e) => {
-                        setEmail(e.target.value);
-                    }} label={"e-mail"} />
-                    <InputBox onChange={(e) => {
-                        setUsername(e.target.value);
-                    }} label={"username"} />
-                    <InputBox onChange={(e) => {
-                        setPassword(e.target.value);
-                    }} label={"password"} />
-                    <Button onClick={handleSignup}/>
-                    <BottomWarning linkText={"already have an account?"} to={"/signin"}/>
+                    <InputBox onChange={(e) => 
+                        setEmail(e.target.value)
+                    } label={"e-mail"} />
+                    <InputBox onChange={(e) => 
+                        setUsername(e.target.value)
+                    } label={"username"} />
+                    <InputBox onChange={(e) => 
+                        setPassword(e.target.value)
+                    } label={"password"} />
+                    {errorMessage && <div className="text-red-500 text-center">{errorMessage}</div>}
+                    <Button onClick={handleSignup} />
+                    <BottomWarning linkText={"already have an account?"} to={"/signin"} />
                 </div>
             </div>
         </div>
     );
-}
+};

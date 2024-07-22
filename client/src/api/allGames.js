@@ -105,7 +105,7 @@ const games = [
         id: 18, 
         name: "Stellar Blade", 
         platform: ["PS5"], 
-        priceINR: 2999 },
+        priceINR: 4999 },
     {
         id: 19,
         name: "Far Cry 6",
@@ -120,4 +120,4 @@ const games = [
     },
 ];
   
-module.exports = games;  
+export default games;  
