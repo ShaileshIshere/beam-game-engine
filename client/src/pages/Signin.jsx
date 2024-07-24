@@ -1,40 +1,14 @@
-import { InputBox } from "../components/InputBox";
 import { Header } from "../components/Header";
 import { BottomWarning } from "../components/BottomWarning";
 import { Button } from "../components/Button";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Background from "../images/redBackground.jpg";
+import { useSignin } from "../useSignIn";
+import { PasswordInput } from "../components/PasswordInput";
+import { UsernameInput } from "../components/UsernameInput";
+import { ErrorMessage } from "../components/ErrorMessage";
 
 export const Signin = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
-    const navigate = useNavigate();
-
-    const handleSignin = async () => {
-        if (!username || !password) {
-            setErrorMessage("Please fill in all the details");
-            return;
-        }
-
-        try {
-            const response = await axios.post("http://localhost:3000/api/user/signin", {
-                username,
-                password
-            });
-            localStorage.setItem("token", response.data.token);
-            navigate("/dashboard");
-        } catch (error) {
-            if (error.response)
-                console.error("Error response", error.response.data);
-            else if (error.request)
-                console.error("Error request", error.request);
-            else
-                console.error("Error message", error.message);
-        }
-    };
+    const { handleSignin } = useSignin();
 
     return (
         <div className="relative w-screen h-screen overflow-hidden">
@@ -42,13 +16,9 @@ export const Signin = () => {
             <div className="absolute inset-0 h-full w-full flex justify-center items-center bg-black bg-opacity-30">
                 <div className="absolute bg-zinc-900 w-1/3 h-2/3 px-7">
                     <Header label={"sign in"} />
-                    <InputBox onChange={(e) => 
-                        setUsername(e.target.value)
-                    } label={"username"} />
-                    <InputBox onChange={(e) => 
-                        setPassword(e.target.value)
-                    } label={"password"} />
-                    {errorMessage && <div className="text-red-700 text-center mb-2">{errorMessage}</div>}
+                    <UsernameInput />
+                    <PasswordInput />
+                    <ErrorMessage />
                     <div className="text-md text-center text-stone-600">
                         {("if you don't know your username and password, then it's time to create one").toUpperCase()}
                     </div>

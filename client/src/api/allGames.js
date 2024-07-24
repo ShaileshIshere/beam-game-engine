@@ -14,7 +14,7 @@ const games = [
     {
         id: 3,
         name: "Cyberpunk 2077",
-        platform: ["PC", "PS4", "Xbox One", "PS5", "Xbox Series X"],
+        platform: ["PC", "PS4", "Xbox One", "PS5"],
         priceINR: 4499,
     },
     {
@@ -26,7 +26,7 @@ const games = [
     {
         id: 5,
         name: "Halo Infinite",
-        platform: ["PC", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "Xbox One"],
         priceINR: 4499,
     },
     {
@@ -38,25 +38,25 @@ const games = [
     {
         id: 7,
         name: "FIFA 23",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 3999,
     },
     {
         id: 8,
         name: "Elden Ring",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 4499,
     },
     {
         id: 9,
         name: "Call of Duty: Modern Warfare II",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 4999,
     },
     {
         id: 10,
         name: "Resident Evil Village",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 3999,
     },
     {
@@ -92,13 +92,13 @@ const games = [
     {
         id: 16,
         name: "Doom Eternal",
-        platform: ["PC", "PS4", "Xbox One", "PS5", "Xbox Series X"],
+        platform: ["PC", "PS4", "Xbox One", "PS5"],
         priceINR: 3999,
     },
     {
         id: 17,
         name: "Forza Horizon 5",
-        platform: ["PC", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "Xbox One"],
         priceINR: 4499,
     },
     { 
@@ -109,13 +109,13 @@ const games = [
     {
         id: 19,
         name: "Far Cry 6",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 4499,
     },
     {
         id: 20,
         name: "Battlefield 2042",
-        platform: ["PC", "PS4", "PS5", "Xbox One", "Xbox Series X"],
+        platform: ["PC", "PS4", "PS5", "Xbox One"],
         priceINR: 4999,
     },
 ];

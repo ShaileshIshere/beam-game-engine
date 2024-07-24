@@ -1,9 +1,30 @@
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 import { LightTooltip } from './Hovers';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export const BeamPoints = ({ balance }) => {
-    const formatBalance = (balance) => {
-        return balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const BeamPoints = () => {
+    const [points, setPoints] = useState(0);
+
+    useEffect(() => {
+        const handlePoints = async () => {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await axios.get("http://localhost:3000/api/account/balance", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setPoints(response.data.balance)
+            } catch (error) {
+                console.log("error fetching balance: ", error);
+            }
+        }
+        handlePoints();
+    }, [points])
+
+    const formatBalance = (points) => {
+        return points.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
 
     return (
@@ -14,7 +35,7 @@ export const BeamPoints = ({ balance }) => {
                 </div>
             </LightTooltip>
             <div className="cursor-default font-semibold ml-2 text-lg">
-                { formatBalance(balance) }
+                { formatBalance(points) }
             </div>
         </div>
     );

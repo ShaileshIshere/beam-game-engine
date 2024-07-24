@@ -1,19 +1,26 @@
-import React from 'react';
+import { React } from 'react';
+import { useRecoilState } from 'recoil';
+import { searchTermState } from '../atom';
 
 export const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useRecoilState(searchTermState);
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
-    <form className='flex items-center mr-16' action="">
-        <input
-            type="text"
-            placeholder="Search..."
-            className="bg-neutral-900 w-96 text-white border border-gray-600 rounded-3xl py-2 px-4 mr-2 outline-none placeholder-gray-400"
-        />
-        <button
-            type="submit"
-            className="bg-neutral-900 text-white border border-gray-600 rounded-3xl py-2 px-4 hover:bg-neutral-800"
-        >
-            Search
-        </button>
+    <form className='flex items-center mr-16' onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder={ ("search").toUpperCase() } 
+        className="bg-neutral-900 font-medium w-[35rem] text-sm text-center text-white border border-gray-600 rounded-3xl py-2 px-4 mr-2 outline-none placeholder-gray-400"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
     </form>
   );
 }
