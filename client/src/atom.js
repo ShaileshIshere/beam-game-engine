@@ -24,3 +24,13 @@ export const searchEmail = atom({
     key: "searchEmail",
     default: ""
 });
+
+export const balanceState = atom({
+    key: "balanceState",
+    default: 0
+});
+
+export const wishlistState = atom({
+    key: "wishlistState",
+    defualt: []
+})

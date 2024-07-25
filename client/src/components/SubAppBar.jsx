@@ -1,5 +1,5 @@
 import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
-// import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
+import HomeSharpIcon from '@mui/icons-material/HomeSharp';
 import { BeamPoints } from './BeamPoints';
 import { grey } from '@mui/material/colors';
 import { LightTooltip } from './Hovers';
@@ -13,14 +13,14 @@ export const SubAppBar = ({ setView }) => {
             <div className='flex items-center justify-center'>
                 <div className='cursor-pointer' onClick={() => setView('purchased')}>
                     <LightTooltip title="YOUR GAMES" arrow>
-                        <BookmarkSharpIcon sx={{ color: grey[300] }} fontSize='large'/>
+                        <BookmarkSharpIcon sx={{ color: grey[300], fontSize: '2em' }} />
                     </LightTooltip>
                 </div>
-                {/* <div className='cursor-pointer mx-3' onClick={() => setView('wishlist')}>
-                    <LightTooltip title="CART" arrow>
-                        <ShoppingCartSharpIcon sx={{ color: grey[300] }} fontSize='large'/>
+                <div className='cursor-pointer ml-2' onClick={() => setView('all')}>
+                    <LightTooltip title="HOME" arrow>
+                        <HomeSharpIcon sx={{ color: grey[300], fontSize: '2em' }} />
                     </LightTooltip>
-                </div> */}
+                </div>
                 <BeamPoints />
             </div>
             <SearchBar />

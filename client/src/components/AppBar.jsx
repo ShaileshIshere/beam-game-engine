@@ -2,7 +2,7 @@ import Logo from "../images/Beam-Logo.png"
 import textLogo from "../images/text-logo.png";
 import { SubAppBar } from "./SubAppBar";
 
-export const AppBar = ({ setView }) => {
+export const AppBar = () => {
     
     return (
         <div className="relative">
@@ -12,9 +12,9 @@ export const AppBar = ({ setView }) => {
                     <img src={ textLogo } className='h-auto w-36 cursor-pointer' />
                 </div>
             </div>
-            <div className="pt-24">
+            {/* <div className="pt-24">
                 <SubAppBar setView={setView} />
-            </div>
+            </div> */}
         </div>
     );
 }

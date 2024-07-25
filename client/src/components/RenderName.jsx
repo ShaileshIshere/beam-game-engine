@@ -24,12 +24,12 @@ export const RenderName = () => {
 
     return (
         <div className="flex">
-            <div className="cursor-default font-semibold flex flex-col justify-center mr-3 text-xl subpixel-antialiased font-normal tracking-tight">
+            <div className="cursor-default font-semibold flex flex-col justify-center mr-3 text-lg subpixel-antialiased font-normal tracking-tight">
                 { ("hey there,").toUpperCase() }
             </div>
             <LightTooltip title={ name.toUpperCase() } arrow>
-                <div className="cursor-pointer bg-zinc-900 h-12 w-12 flex justify-center rounded-full">
-                    <div className="flex flex-col justify-center h-full text-2xl font-bold">
+                <div className="cursor-pointer bg-zinc-900 h-10 w-10 flex justify-center rounded-full">
+                    <div className="flex flex-col justify-center h-full text-xl font-bold">
                         { name ? name.toUpperCase()[0] : "" }
                     </div>
                 </div>

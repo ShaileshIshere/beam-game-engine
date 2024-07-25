@@ -2,7 +2,7 @@ const express = require("express");
 const authMiddleware = require("../middleware");
 // const fs = require("fs").promises;
 // const path = require("path");
-const { Account, User, PurchasedGames } = require("../database");
+const { Account, User, PurchasedGames, WishlistGames } = require("../database");
 const games = require("../API/allGames");
 const mongoose = require("mongoose");
 const router = express.Router();
@@ -126,5 +126,87 @@ router.post("/purchaseGame", authMiddleware, async (req, res) => {
         session.endSession();
     }
 });
+
+// router.post("/wishlistGame", authMiddleware, async (req, res) => {
+//     const { gameId } = req.body; // Expect a single gameId
+
+//     if (!gameId) {
+//         return res.status(400).json({
+//             message: 'Game ID is required'
+//         });
+//     }
+
+//     const session = await mongoose.startSession();
+//     session.startTransaction();
+
+//     try {
+//         const userId = req.userId;
+        
+//         // Fetch the user
+//         const user = await User.findById(userId);
+//         if (!user) {
+//             await session.abortTransaction();
+//             return res.status(404).json({
+//                 message: "User not found"
+//             });
+//         }
+
+//         // Find the game in the local data
+//         const game = games.find(game => game.id === gameId);
+//         if (!game) {
+//             await session.abortTransaction();
+//             return res.status(400).json({
+//                 message: "Game not found"
+//             });
+//         }
+
+//         // Fetch or create the WishlistGames document
+//         let userCartedGames = await WishlistGames.findOne({ userId: userId }).session(session);
+//         if (!userCartedGames) {
+//             userCartedGames = new WishlistGames({
+//                 userId: userId,
+//                 username: user.username,
+//                 games: []
+//             });
+//         }
+
+//         // Check if the game is already in the wishlist
+//         const gameAlreadyInWishlist = userCartedGames.games.some(g => g.gameId === gameId);
+
+//         if (!gameAlreadyInWishlist) {
+//             userCartedGames.games.push({
+//                 gameId: game.id,
+//                 gameName: game.name,
+//                 platform: game.platform,
+//                 price: game.priceINR
+//             });
+//             await userCartedGames.save({ session });
+//         }
+
+//         // Commit the transaction
+//         await session.commitTransaction();
+
+//         // Clean up the response data
+//         const cleanedCartedGames = userCartedGames.games.map(game => {
+//             const { _id, id, ...cleanedGame } = game.toObject();
+//             return cleanedGame;
+//         });
+
+//         res.status(200).json({
+//             message: "Game added to wishlist successfully",
+//             cartedGames: cleanedCartedGames
+//         });
+
+//     } catch (error) {
+//         await session.abortTransaction();
+//         res.status(500).json({
+//             message: "Server error",
+//             error: error.message
+//         });
+//     } finally {
+//         session.endSession();
+//     }
+// });
+
 
 module.exports = router;

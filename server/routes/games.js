@@ -27,9 +27,10 @@ router.get("/purchased", authMiddleware, async (req, res) => {
     try {
         // Fetch the purchased games for the user
         const userPurchasedGames = await PurchasedGames.findOne({ userId: userId }).populate('games.gameId', 'name priceINR platform').exec();
-
-        if (!userPurchasedGames) {
+        
+        if (!userPurchasedGames || userPurchasedGames.games.length === 0) {
             return res.status(404).json({
+                // purchasedGames: null,
                 message: "No purchased games found"
             });
         }
@@ -39,7 +40,7 @@ router.get("/purchased", authMiddleware, async (req, res) => {
             const { _id, ...cleanedGame } = game.toObject();
             return cleanedGame;
         });
-
+        
         res.status(200).json({
             message: "Purchased games retrieved successfully",
             purchasedGames: cleanedPurchasedGames
@@ -124,6 +125,37 @@ router.get("/purchased", authMiddleware, async (req, res) => {
 //         console.log("server error: ", error);
 //         return res.status(500).json({
 //             message: "server error"
+//         });
+//     }
+// });
+
+// router.get("/wishlist", authMiddleware, async (req, res) => {
+//     const userId = req.userId;
+
+//     try {
+//         const userCartedGames = await WishlistGames.findOne({ userId: userId }).populate('games.gameId', 'name priceINR platform').exec();
+
+//         if (!userCartedGames || userCartedGames.games.length === 0) {
+//             return res.status(404).json({
+//                 message: "No wishlist games found"
+//             });
+//         }
+
+//         const cleanedCartedGames = userCartedGames.games.map(game => {
+//             const { _id, ...cleanedGame } = game.toObject();
+//             return cleanedGame;
+//         });
+
+//         res.status(200).json({
+//             message: "Wishlist games retrieved successfully",
+//             cartedGames: cleanedCartedGames
+//         });
+
+//     } catch (error) {
+//         console.error("Server error:", error);
+//         res.status(500).json({
+//             message: "Internal server error",
+//             error: error.message
 //         });
 //     }
 // });
