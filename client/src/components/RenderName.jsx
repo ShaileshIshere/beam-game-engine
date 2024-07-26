@@ -9,7 +9,8 @@ export const RenderName = () => {
         const handleName = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const response = await axios.get("http://localhost:3000/api/user/profile", {
+                // const response = await axios.get("http://localhost:3000/api/user/profile", {
+                const response = await axios.get("https://beam-game-engine-server.vercel.app/api/user/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

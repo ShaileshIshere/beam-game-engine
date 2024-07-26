@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.use(cors(
     {
-        origin: ["http://localhost:5173"],
+        origin: ["https://beam-game-engine-client.vercel.app"],
         methods: ["POST", "GET", "PUT", "PATCH"],
         credentials: true
     }

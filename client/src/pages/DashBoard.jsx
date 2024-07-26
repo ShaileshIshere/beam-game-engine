@@ -20,7 +20,8 @@ export const DashBoard = () => {
                     Authorization: `Bearer ${token}`,
                 }
             };
-            const response = await axios.get('http://localhost:3000/api/account/balance', config);
+            // const response = await axios.get('http://localhost:3000/api/account/balance', config);
+            const response = await axios.get('https://beam-game-engine-server.vercel.app/api/account/balance', config);
             setBalance(response.data.balance);
         } catch (error) {
             console.error('Error fetching balance:', error);
@@ -48,11 +49,13 @@ export const DashBoard = () => {
 
                 let response;
                 if (view === 'purchased') {
-                    response = await axios.get('http://localhost:3000/api/games/purchased', config);
+                    // response = await axios.get('http://localhost:3000/api/games/purchased', config);
+                    response = await axios.get('https://beam-game-engine-server.vercel.app/api/games/purchased', config);
                     setGames(response.data.purchasedGames || []);
                 } 
                 else {
-                    response = await axios.get('http://localhost:3000/api/games/all', config);
+                    // response = await axios.get('http://localhost:3000/api/games/all', config);
+                    response = await axios.get('https://beam-game-engine-server.vercel.app/api/games/all', config);
                     setGames(response.data || []);
                 }
             } catch (error) {

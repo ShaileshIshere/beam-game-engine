@@ -18,7 +18,8 @@ export const useSignup = () => {
         }
     
         try {
-            const response = await axios.post("http://localhost:3000/api/user/signup", {
+            // const response = await axios.post("http://localhost:3000/api/user/signup", {
+            const response = await axios.post("https://beam-game-engine-server.vercel.app/api/user/signup", {
                 Email,
                 username,
                 password

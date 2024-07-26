@@ -49,7 +49,8 @@ export const AllGames = ({ games, view }) => {
                 }
             };
 
-            const response = await axios.post('http://localhost:3000/api/account/purchaseGame', {
+            // const response = await axios.post('http://localhost:3000/api/account/purchaseGame', {
+            const response = await axios.post('https://beam-game-engine-server.vercel.app/api/account/purchaseGame', {
                 gameId: selectedGame.gameId
             }, config);
 
@@ -57,7 +58,8 @@ export const AllGames = ({ games, view }) => {
                 console.log(`Game purchased: ${selectedGame.gameName}`);
                 setIsModalOpen(false);
                 setSelectedGame(null);
-                const balanceResponse = await axios.get('http://localhost:3000/api/account/balance', config);
+                // const balanceResponse = await axios.get('http://localhost:3000/api/account/balance', config);
+                const balanceResponse = await axios.get('https://beam-game-engine-server.vercel.app/api/account/balance', config);
                 // Assuming setBalance comes from props or another state management
                 setBalance(balanceResponse.data.balance); 
             }
