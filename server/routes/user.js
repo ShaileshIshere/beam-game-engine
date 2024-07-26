@@ -55,7 +55,7 @@ router.post("/signup", async (req, res) => {
         await Account.create({
             userId,
             username,
-            balance: 25000
+            balance: 60000
         })
     
         res.status(201).json({

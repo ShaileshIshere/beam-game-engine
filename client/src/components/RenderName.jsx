@@ -24,7 +24,7 @@ export const RenderName = () => {
 
     return (
         <div className="flex">
-            <div className="cursor-default font-semibold flex flex-col justify-center mr-3 text-lg subpixel-antialiased font-normal tracking-tight">
+            <div className="cursor-default font-semibold flex flex-col justify-center mr-3 text-lg subpixel-antialiased font-normal tracking-tight hidden sm:flex">
                 { ("hey there,").toUpperCase() }
             </div>
             <LightTooltip title={ name.toUpperCase() } arrow>

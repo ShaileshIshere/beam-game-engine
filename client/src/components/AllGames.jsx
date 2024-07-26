@@ -6,6 +6,7 @@ import { ConfirmModal } from "./ConfirmModal";
 import axios from "axios";
 import BookmarkSharpIcon from '@mui/icons-material/BookmarkSharp';
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
+import { BeamPoints } from "./BeamPoints";
 
 export const AllGames = ({ games, view }) => {
     const [gameList, setGameList] = useState([]);
@@ -66,21 +67,26 @@ export const AllGames = ({ games, view }) => {
     };
 
     return (
-        <div className="px-44 py-3 static">
-            <h1 className="text-2xl font-bold mb-4 text-center text-slate-300">{("Game Dashboard").toUpperCase()}</h1>
+        <div className="sm:px-44 px-14 py-3 static">
+            <div className="flex justify-center items-center mb-4">
+                <h1 className="sm:text-2xl text-md sm:font-bold font-semibold sm:mb-4 sm:text-center mr-6 text-slate-300">{("Game Dashboard").toUpperCase()}</h1>
+                <div className="sm:hidden sm:flex">
+                    <BeamPoints />
+                </div>
+            </div>
             <div className="flex flex-wrap -mx-4">
                 {filteredGames.length > 0 ? (
                     filteredGames.map((game) => (
                         <div 
                             key={game.gameId} 
-                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5 px-2 mb-4 flex flex-col items-center transform transition-transform duration-500 hover:scale-[1.035] hover:shadow-lg"
+                            className="w-1/2 sm:w-2/4 md:w-1/3 lg:w-1/5 px-2 mb-4 flex flex-col items-center transform transition-transform duration-500 hover:scale-[1.035] hover:shadow-lg"
                         >
                             <div className="overflow-hidden rounded-lg w-fit h-full flex flex-col items-center justify-center bg-neutral-800">
                                 <div className="relative group">
                                     <img 
                                         src={`/allGames/${game.gameId}.jpeg`} 
                                         alt={game.gameName} 
-                                        className="w-[30rem] h-[30rem] object-cover transition-opacity duration-500 group-hover:opacity-40"
+                                        className="sm:w-[30rem] w-[20rem] sm:h-[30rem] h-[20rem] object-cover transition-opacity duration-500 group-hover:opacity-40"
                                         onError={(e) => {
                                             e.target.src = '/images/placeholder.jpg';
                                             e.target.alt = 'Image not available';
@@ -90,26 +96,26 @@ export const AllGames = ({ games, view }) => {
                                         <LightTooltip title="BUY NOW" arrow>
                                             <button
                                                 onClick={() => handleBuyClick(game)}
-                                                className="bg-black bg-opacity-70 p-4 rounded-full mx-1 h-12 w-12 flex items-center justify-center"
+                                                className="bg-black bg-opacity-70 p-4 rounded-full mx-1 h-14 w-14 flex items-center justify-center"
                                             >
-                                                <BookmarkSharpIcon className="text-white" sx={{ fontSize: 20 }} />
+                                                <BookmarkSharpIcon className="text-white" sx={{ fontSize: 30 }} />
                                             </button>
                                         </LightTooltip>
                                     </div>
                                 </div>
-                                <div className="bg-neutral-800 w-full h-36 mt-2 flex flex-col items-center justify-center cursor-default">
-                                    <h2 className="text-lg font-semibold mb-2 text-center text-slate-200">{game.gameName}</h2>
+                                <div className="bg-neutral-800 w-full sm:h-36 h-40 px-1 mt-2 flex flex-col items-center justify-center cursor-default">
+                                    <h2 className="sm:text-lg text-md font-semibold mb-2 text-center text-slate-200">{game.gameName}</h2>
                                     <div className="flex flex-wrap gap-2 mb-2 justify-center">
                                         {game.platform.map((platform, index) => (
                                             <div 
                                                 key={index} 
-                                                className="bg-red-700 text-sm text-slate-200 px-2 py-1 rounded-lg"
+                                                className="bg-red-700 sm:text-sm text-xs text-slate-200 sm:px-3 sm:py-1 rounded-full px-2 py-1"
                                             >
                                                 {platform}
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="text-lg text-slate-200 text-center flex items-center justify-center mt-2 cursor-pointer">
+                                    <div className="sm:text-lg text-md text-slate-200 text-center flex items-center justify-center mt-2 cursor-pointer">
                                         <p className="mr-1">{game.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                                         <OfflineBoltIcon />
                                     </div>
