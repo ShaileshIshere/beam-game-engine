@@ -1,5 +1,5 @@
 import { 
-  BrowserRouter, 
+  BrowserRouter as Router, 
   Routes, 
   Route 
 } from "react-router-dom";
@@ -13,13 +13,13 @@ function App() {
   return (
     <>
       <RecoilRoot>
-        <BrowserRouter>
+        <Router basename="beam-game-engine-client.vercel.app/">
           <Routes>
             <Route path='/' element={<Signup />} />
             <Route path='/signin' element={<Signin />} />
             <Route path='/dashboard' element={<DashBoard />} />
           </Routes>
-        </BrowserRouter>
+        </Router>
       </RecoilRoot>
     </>
   )
