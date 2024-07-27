@@ -5,9 +5,10 @@ const PORT = 3000;
 
 const app = express();
 
-router.use(cors(
+app.use(cors(
     {
         origin: ["https://beam-game-engine-client.vercel.app"],
+        // origin: ["http://localhost:5173"],
         methods: ["POST", "GET", "PUT", "PATCH"],
         credentials: true
     }
